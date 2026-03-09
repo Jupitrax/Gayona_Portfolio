@@ -13,6 +13,7 @@ class Experience extends Model
         'role',
         'organization',
         'description',
-        'year'
+        'year',
+        'type'
     ];
 }

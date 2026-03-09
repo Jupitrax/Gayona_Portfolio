@@ -14,6 +14,10 @@ class Home extends Model
         'title',
         'bio',
         'email',
-        'location'
+        'location',
+        'phone',
+        'linkedin',
+        'profile_image',
+        'title_image'
     ];
 }

@@ -13,6 +13,8 @@ class Project extends Model
         'title',
         'description',
         'tech_stack',
-        'year'
+        'year',
+        'category',
+        'image_path'
     ];
 }

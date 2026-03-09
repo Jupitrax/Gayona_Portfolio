@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('role');
             $table->string('organization');
-            $table->string('description');
+            $table->text('description');
             $table->string('year');
+            $table->string('type')->default('Experience'); // Experience or Education
             $table->timestamps();
         });
     }

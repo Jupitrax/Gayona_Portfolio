@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('title');
-            $table->string('bio');
+            $table->text('bio');
             $table->string('email');
             $table->string('location');
+            $table->string('phone')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('profile_image')->nullable();
+            $table->string('title_image')->nullable();
             $table->timestamps();
         });
     }
