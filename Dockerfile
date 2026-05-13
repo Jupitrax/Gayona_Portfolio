@@ -17,6 +17,10 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 775 storage bootstrap/cache
 
+# IMPORTANT: COPY ENTRYPOINT
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 EXPOSE 10000
 
 CMD ["sh", "/docker-entrypoint.sh"]
