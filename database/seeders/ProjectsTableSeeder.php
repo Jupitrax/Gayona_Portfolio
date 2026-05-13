@@ -63,7 +63,7 @@ class ProjectsTableSeeder extends Seeder
             [
                 'title' => 'AWS - Pandesal',
                 'category' => 'AWS',
-                'image_path' => 'Pandesal.png',
+                'image_path' => 'AWS - Pandesal.png',
                 'description' => 'AWS Learning Club USLS mascot illustration.',
             ],
             [
