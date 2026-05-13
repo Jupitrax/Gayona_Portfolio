@@ -16,13 +16,16 @@ class PortfolioAccessMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Log the access
-        Log::info('Portfolio accessed', [
-            'ip' => $request->ip(),
-            'url' => $request->fullUrl(),
-            'method' => $request->method(),
-            'time' => now()->toDateTimeString()
-        ]);
+        // Avoid noisy logs in production
+        if (app()->environment('local') || app()->environment('development')) {
+            Log::info('Portfolio accessed', [
+                'ip' => $request->ip(),
+                'url' => $request->fullUrl(),
+                'method' => $request->method(),
+                'time' => now()->toDateTimeString(),
+            ]);
+        }
+
         
         return $next($request);
     }

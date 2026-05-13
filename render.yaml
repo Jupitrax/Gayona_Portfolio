@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: render-laravel
+    runtime: php
+    plan: free
+    buildCommand: |
+      set -e
+      composer install --no-dev --optimize-autoloader
+      npm ci
+      npm run build
+      php artisan config:clear || true
+      php artisan route:clear || true
+      php artisan view:clear || true
+      php artisan storage:link || true
+    startCommand: |
+      php artisan serve --host 0.0.0.0 --port $PORT
+    env:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: 'false'
+      - key: LOG_CHANNEL
+        value: stderr
+
+

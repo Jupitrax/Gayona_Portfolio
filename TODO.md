@@ -37,37 +37,39 @@
 - [x] Added Bootstrap Icons
 - [x] Applied Inknut Antiqua font from Google Fonts
 
-## ⚠️ Remaining Tasks (Manual Steps Required)
+## 🚀 Deployment (Render) - Steps
 
-### Image Copy Required
-You need to manually copy the following folders:
-1. Copy `C:\xampp\htdocs\portfolio\img\*` to `C:\Users\ACER Nitro V15\Gayona_EPortfolio\public\img\`
-2. Copy `C:\xampp\htdocs\portfolio\projects\*` to `C:\Users\ACER Nitro V15\Gayona_EPortfolio\public\projects\`
+### 1) Added Render config files
+- [x] Added `Procfile` (Render start command)
+- [x] Added `render.yaml` (optional Render config)
 
-### Terminal Commands to Run
-```bash
-# Navigate to project directory
-cd C:\Users\ACER Nitro V15\Gayona_EPortfolio
+### 2) Configure environment variables in Render
+- [ ] Set `APP_KEY` (required)  
+  - Example: `base64:...` (generate with `php artisan key:generate`)
+- [ ] Set `APP_URL` (your Render URL)
+- [ ] Set database credentials (use `DATABASE_URL` if possible, recommended)
 
-# Run migrations
-php artisan migrate
 
-# Seed the database
-php artisan db:seed
+### 3) Build commands on Render
+- [ ] Ensure Render runs:
+  - `composer install --no-dev --optimize-autoloader`
+  - `npm ci && npm run build`
 
-# Start the server
-php artisan serve
-```
+### 4) Database setup on Render
+- [ ] Run (one-time) migrations:
+  - `php artisan migrate --force`
+- [ ] Run seed ONE time:
+  - `php artisan db:seed --force`
+  - If you don’t want seeds re-run on every deploy, run it only once (or remove seed step after first successful deploy).
 
-## Notes
-- The portfolio now uses database-driven content via Eloquent ORM
-- All hardcoded data has been removed from Blade files
-- Follows MVC architecture properly
-- Custom middleware logs all portfolio access
 
-## Pages Created
-- `/` - Home (About Me)
-- `/skills` - Skills Page
-- `/projects` - Projects Page
-- `/experience` - Experience & Education
-- `/contact` - Contact Page
+### 5) Storage setup on Render
+- [ ] Run:
+  - `php artisan storage:link`
+
+### 6) Confirm images are committed
+- [ ] Ensure `public/img/*` and `public/project-img/*` are already in git
+
+### Notes
+Render does not allow committing `.env` with real secrets. Use Render's dashboard environment variables instead.
+
