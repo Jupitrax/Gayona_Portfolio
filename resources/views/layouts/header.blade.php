@@ -6,5 +6,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     @include('layouts.styles')
+    <style>
+        /* Light dirty white background + black default text */
+        body { background: #f2f2e8; color: #000; }
+
+        /* Keep modal/overlay text readable */
+        #overlay, #overlay * { color: #fff; }
+    </style>
 </head>
 <body>

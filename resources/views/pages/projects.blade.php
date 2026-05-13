@@ -18,7 +18,8 @@
             'Concept Art' => 'bi-palette',
             'Sprite' => 'bi-controller',
             'AWS' => 'bi-cloud',
-            'HALINAW' => 'bi-lightning'
+            'HALINAW' => 'bi-lightning',
+            'Fated Sisters' => 'bi-stars'
         ];
         @endphp
         
@@ -36,12 +37,20 @@
                     @foreach($projectItems as $project)
                     <div class="col-md-4 mb-4">
                         <div class="image-container">
-                            <img src="{{ asset('project-img/' . $project->image_path) }}" 
-                                 alt="{{ $project->title }}" 
+                            @php
+                                $rawImage = trim((string) $project->image_path);
+                                // URL-encode to make sure special characters/spaces render correctly.
+                                $encodedImage = implode('/', array_map('rawurlencode', explode('/', $rawImage)));
+                            @endphp
+                            <img src="{{ asset('project-img/' . $encodedImage) }}"
+                                 alt="{{ $project->title }}"
                                  data-description="{{ $project->description }}"
                                  data-category="{{ $project->category }}"
-                                 class="gallery-img img-fluid" 
-                                 onclick="openProject(this)">
+                                 data-title="{{ $project->title }}"
+                                 class="gallery-img img-fluid"
+                                 onclick="openProject(this)"
+                                 onerror="this.onerror=null; this.src='{{ asset('img/divider.png') }}';">
+
                         </div>
                     </div>
                     @endforeach
@@ -74,7 +83,11 @@ function openProject(imgElement) {
 
     // Pull data from clicked image
     enlargedImg.src = imgElement.src;
-    title.innerText = imgElement.alt + " (" + imgElement.getAttribute('data-category') + ")";
+
+    // Format: "Title (Category)" using DB-provided title (not file name)
+    title.innerText = imgElement.getAttribute('data-title') + " (" + imgElement.getAttribute('data-category') + ")";
+
+    // Format: description only
     description.innerText = imgElement.getAttribute('data-description');
 
     // Show overlay

@@ -42,11 +42,12 @@
     .image-container:hover {
         transform: translateY(-5px);
     }
-    .image-container img {
+.image-container img {
         border-radius: 5px;
-        height: 200px;
-        object-fit: cover;
         width: 100%;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: 4 / 3;
         cursor: pointer;
     }
     .page-description {
