@@ -1,18 +1,23 @@
-#!/bin/sh
+FROM php:8.2-fpm
 
-echo "Checking database migrations..."
+RUN apt-get update && apt-get install -y \
+    git curl zip unzip \
+    libpng-dev libonig-dev libxml2-dev
 
-php artisan migrate --force
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-echo "Checking if seeding is needed..."
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# OPTIONAL: only seed if table is empty
-if [ "$(php artisan tinker --execute=\"echo DB::table('projects')->count();\")" = "0" ]; then
-    echo "Seeding database..."
-    php artisan db:seed --force
-else
-    echo "Seed skipped (data already exists)"
-fi
+WORKDIR /var/www
 
-echo "Starting Laravel server..."
-php artisan serve --host=0.0.0.0 --port=10000
+COPY . .
+
+RUN composer install --no-dev --optimize-autoloader
+
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 775 storage bootstrap/cache
+
+EXPOSE 10000
+
+# SAFE ENTRYPOINT (no syntax issues)
+CMD ["sh", "-c", "php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=10000"]
