@@ -1,162 +1,132 @@
-<?php
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
-class ProjectsTableSeeder extends Seeder
+public function run()
 {
-    public function run()
-    {
+    // Clear existing projects first
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    DB::table('projects')->delete();
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+    $projects = [
+
         // Blender Projects
-        DB::table('projects')->insert([
-            'title' => 'Magindara - Low Poly (Full View)',
+        [
+            'title' => 'Magindara Low Poly (Full View)',
             'category' => 'Blender',
             'image_path' => 'Magindara - Low Poly (Full View).png',
             'description' => '3D character model and final render created using Blender software.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Magindara - Low Poly (Closeup)',
+        ],
+        [
+            'title' => 'Magindara Low Poly (Closeup)',
             'category' => 'Blender',
             'image_path' => 'Magindara - Low Poly (Closeup).png',
             'description' => '3D character model and final render created using Blender software.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Bakunawa - Final Render',
+        ],
+        [
+            'title' => 'Bakunawa Final Render',
             'category' => 'Blender',
             'image_path' => 'Bakunawa - Final Render.png',
             'description' => '3D weapon model and final render created using Blender software.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
 
-        // Concept Art Projects
-        DB::table('projects')->insert([
-            'title' => 'Bakunawa - Weapon Concept',
+        // Concept Art
+        [
+            'title' => 'Bakunawa Weapon Concept',
             'category' => 'Concept Art',
             'image_path' => 'Bakunawa - Weapon Concept.png',
             'description' => 'Mythical weapon concept design.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
+        ],
+        [
             'title' => 'Hades Artstyle Study',
             'category' => 'Concept Art',
             'image_path' => 'Hades Artstyle Study.png',
             'description' => 'Artstyle study based on Supergiant Games Hades.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
 
-        // Sprite Projects
-        DB::table('projects')->insert([
-            'title' => 'Chrono - Player Sprite',
+        // Sprite
+        [
+            'title' => 'Player Sprite',
             'category' => 'Sprite',
             'image_path' => 'Chrono - Player Sprite.png',
             'description' => 'Pixel art sprite for game character.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Chrono - Boss Undine Sprite',
+        ],
+        [
+            'title' => 'Undine Sprite',
             'category' => 'Sprite',
             'image_path' => 'Chrono - Boss Undine Sprite.png',
             'description' => 'Boss character sprite design.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
 
-        // AWS Projects
-        DB::table('projects')->insert([
+        // AWS
+        [
             'title' => 'AWS - Pandesal',
             'category' => 'AWS',
-            'image_path' => 'AWS - Pandesal.png',
+            'image_path' => 'Pandesal.png',
             'description' => 'AWS Learning Club USLS mascot illustration.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'AWS - Pandora',
+        ],
+        [
+            'title' => 'Pandora',
             'category' => 'AWS',
             'image_path' => 'AWS - Pandora.png',
             'description' => 'AWS Learning Club USLS mascot illustration.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
 
-        // HALINAW Projects (Philippine Mythology)
-        DB::table('projects')->insert([
-            'title' => 'HALINAW - Lalahon',
+        // HALINAW
+        [
+            'title' => 'Lalahon',
             'category' => 'HALINAW',
             'image_path' => 'Diwata Pixel Art - Lalahon.png',
             'description' => 'Character design for the Visayan goddess of fire.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'HALINAW - Licalibutan',
+        ],
+        [
+            'title' => 'Licalibutan',
             'category' => 'HALINAW',
             'image_path' => 'Diwata Pixel Art - Licalibutan.png',
             'description' => 'Character design for the Visayan god of earth.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'HALINAW - Lidagat',
+        ],
+        [
+            'title' => 'Lidagat',
             'category' => 'HALINAW',
             'image_path' => 'Diwata Pixel Art - Lidagat.png',
             'description' => 'Character design for the Visayan goddess of the sea.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'HALINAW - Lihangin',
+        ],
+        [
+            'title' => 'Lihangin',
             'category' => 'HALINAW',
             'image_path' => 'Diwata Pixel Art - Lihangin.png',
             'description' => 'Character design for the Visayan god of the wind.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
 
-        DB::table('projects')->insert([
-            'title' => 'Fated Sisters - The Maiden',
+        // Fated Sisters
+        [
+            'title' => 'The Maiden',
             'category' => 'Fated Sisters',
             'image_path' => 'Fated Sisters - The Maiden.png',
             'description' => 'Character design of the "Maiden" for the Fated Sisters.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Fated Sisters - The Crone',
+        ],
+        [
+            'title' => 'The Crone',
             'category' => 'Fated Sisters',
             'image_path' => 'Fated Sisters - The Crone.png',
-            'description' => 'Character design  of the "Crone" for the Fated Sisters.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Fated Sisters - The Mother',
+            'description' => 'Character design of the "Crone" for the Fated Sisters.',
+        ],
+        [
+            'title' => 'The Mother',
             'category' => 'Fated Sisters',
             'image_path' => 'Fated Sisters - The Mother.png',
             'description' => 'Character design of the "Mother" for the Fated Sisters.',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        ],
+    ];
 
+    // Add timestamps automatically
+    foreach ($projects as &$project) {
+        $project['created_at'] = now();
+        $project['updated_at'] = now();
+    }
+
+    // Prevent duplicates
+    foreach ($projects as $project) {
+        DB::table('projects')->updateOrInsert(
+            ['title' => $project['title']],
+            $project
+        );
     }
 }
