@@ -3,11 +3,28 @@
 @section('title', 'Projects')
 
 @section('content')
-<div class="main-content p-4">
-    <div class="main-header text-center mb-4">
+<div class="main-content p-4 projects-page" style="margin-left:10px; margin-right:10px;">
+    <div class="main-header text-center mb-4 projects-title-wrap">
         <img src="{{ asset('img/title.png') }}" class="img-fluid mx-auto d-block" style="max-width:700px;" alt="Title">
-        <h1>My Creative Projects</h1>
-        <img src="{{ asset('img/divider.png') }}" class="img-fluid mx-auto d-block my-2" style="width:200px;" alt="Divider">
+
+        {{-- Bio intro (circle image + description), centered under title + before description text --}}
+        <div style="height:70px;"></div>
+        <div class="projects-intro d-flex justify-content-center align-items-center" style="margin-bottom:70px;">
+            <div class="projects-intro-inner">
+        <div class="projects-intro-box" style="margin-left:-10px; margin-right:-10px;">
+                    <div class="projects-intro-row">
+                        <img src="{{ asset('img/260306-CCS-IND-013.png') }}" class="projects-intro-avatar" alt="John Andrei T. Gayona">
+                        <p class="projects-intro-text">
+                            John Andrei T. Gayona is a Bachelor of Science in Computer Science student at the University of St. La Salle with a strong focus on game development, design, and digital art. As an aspiring game developer and digital artist, he is continuously refining his technical and artistic skills, with a growing interest in gameplay systems and game asset creation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <h1 class="projects-title text-center">My Creative Projects</h1>
+        <img src="{{ asset('img/divider.png') }}" class="img-fluid mx-auto d-block my-2 projects-title-divider" style="width:200px;" alt="Divider">
+
     </div>
     
     @if($projects->isNotEmpty())
@@ -30,9 +47,10 @@
         <div class="gallery">
             @foreach($grouped as $category => $projectItems)
                 @php $icon = $icons[$category] ?? 'bi-image'; @endphp
-                <div class="resume-section">
+                <div class="resume-section" style="margin-top:40px;">
                     <h3 class='text-center mb-2'><i class='bi {{ $icon }}'></i> {{ $category }}</h3>
                 </div>
+
                 <div class="row">
                     @foreach($projectItems as $project)
                     <div class="col-md-4 mb-4">

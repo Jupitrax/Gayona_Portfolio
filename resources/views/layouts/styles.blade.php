@@ -50,6 +50,49 @@
         aspect-ratio: 4 / 3;
         cursor: pointer;
     }
+.projects-intro {
+        margin-bottom: 2rem;
+    }
+
+    .projects-intro-inner {
+        width: 100%;
+        max-width: 1000px;
+        padding: 0 1rem;
+    }
+
+    .projects-intro-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+.projects-intro-avatar {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #000;
+    }
+
+    .projects-intro-box {
+        background: #000;
+        border: 1px solid #000;
+        padding: 1.25rem;
+        border-radius: 12px;
+        width: 100%;
+    }
+
+    .projects-intro-text {
+        max-width: 700px;
+        margin: 0;
+        color: #fff;
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
     .page-description {
         background: black;
         color: white;
