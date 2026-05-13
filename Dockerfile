@@ -20,11 +20,12 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www
-
-# Ensure Laravel writable dirs
 RUN chmod -R 775 storage bootstrap/cache
+
+# Add entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 10000
 
-# 🚀 SAFE PRODUCTION START (NO MIGRATIONS HERE)
-CMD php artisan serve --host=0.0.0.0 --port=10000
+CMD ["/docker-entrypoint.sh"]
