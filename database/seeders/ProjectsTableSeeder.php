@@ -1,10 +1,5 @@
 public function run()
 {
-    // Clear existing projects first
-    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    DB::table('projects')->delete();
-    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     $projects = [
 
         // Blender Projects
@@ -116,17 +111,20 @@ public function run()
         ],
     ];
 
-    // Add timestamps automatically
-    foreach ($projects as &$project) {
-        $project['created_at'] = now();
-        $project['updated_at'] = now();
-    }
-
-    // Prevent duplicates
     foreach ($projects as $project) {
+
         DB::table('projects')->updateOrInsert(
-            ['title' => $project['title']],
-            $project
+            [
+                'title' => $project['title']
+            ],
+            [
+                'category' => $project['category'],
+                'image_path' => $project['image_path'],
+                'description' => $project['description'],
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
         );
+
     }
 }
