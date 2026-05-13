@@ -21,6 +21,12 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www
 
+# Make sure Laravel can write cache/session/logs
+RUN chmod -R 775 storage bootstrap/cache
+
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+# IMPORTANT: run migrations + seed before serving
+CMD php artisan migrate --force && \
+    php artisan db:seed --force && \
+    php artisan serve --host=0.0.0.0 --port=10000
