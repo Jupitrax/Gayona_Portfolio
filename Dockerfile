@@ -13,6 +13,7 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
+RUN composer dump-autoload
 
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 775 storage bootstrap/cache
